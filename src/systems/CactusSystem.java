@@ -11,4 +11,8 @@ package systems;
  */
 public class CactusSystem {
     
+    public enum CactusSpecies{
+        BABY, ADULT
+    }
+    
 }

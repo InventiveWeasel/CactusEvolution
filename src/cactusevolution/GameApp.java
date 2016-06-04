@@ -23,6 +23,9 @@ public class GameApp extends JFrame{
         viewsMediator = new ViewsMediator();
         
         gameSystem.initialize(viewsMediator);
+        viewsMediator.initialize(gameSystem);
+        
+        this.add(viewsMediator);
         
         setResizable(false);
         pack();
