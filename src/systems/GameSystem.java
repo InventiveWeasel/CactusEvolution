@@ -25,7 +25,8 @@ public class GameSystem {
         this.viewsMediator = viewsMediator;
         
         this.cactusSystem.initialize(viewsMediator);
-        cactusSystem.createCactus(new Point(30, 30));
+        //Teste
+        cactusSystem.createCactus(new Point(450, 300));
     }
     
 }

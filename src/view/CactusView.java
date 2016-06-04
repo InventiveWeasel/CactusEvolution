@@ -28,8 +28,9 @@ public class CactusView {
     }
     
     public void loadResources(){
-        ImageIcon icon = new ImageIcon("tiles/error.png");
-        cactus = viewsMediator.makeColorTransparent(icon.getImage());
+        ImageIcon icon = new ImageIcon("src/tiles/error.png");
+        //cactus = viewsMediator.makeColorTransparent(icon.getImage());
+        cactus = icon.getImage();
     }
     
     public void draw (Graphics g){
@@ -37,7 +38,6 @@ public class CactusView {
         Point center = new Point (cactus.getWidth(viewsMediator)/2, cactus.getHeight(viewsMediator)/2);
         
         g.drawImage(cactus, position.x-center.x, position.y-center.y, viewsMediator);
-        System.out.println("HAHA");
     }
     
 }
