@@ -9,15 +9,15 @@ public class User implements Serializable {
 
    private static final long serialVersionUID = 1L;
    private int id;
-   private String name;
-   private String profession;
+   private String login;
+   private String password;
 
    public User(){}
    
-   public User(int id, String name, String profession){
+   public User(int id, String login, String password){
       this.id = id;
-      this.name = name;
-      this.profession = profession;
+      this.login = login;
+      this.password = password;
    }
 
    public int getId() {
@@ -28,18 +28,18 @@ public class User implements Serializable {
    public void setId(int id) {
       this.id = id;
    }
-   public String getName() {
-      return name;
+   public String getLogin() {
+      return login;
    }
    @XmlElement
-   public void setName(String name) {
-      this.name = name;
+   public void setLogin(String login) {
+      this.login = login;
    }
-   public String getProfession() {
-      return profession;
+   public String getPassword() {
+      return password;
    }
    @XmlElement
-   public void setProfession(String profession) {
-      this.profession = profession;
+   public void setPassword(String password) {
+      this.password = password;
    }		
 }

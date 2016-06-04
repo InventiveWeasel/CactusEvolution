@@ -35,11 +35,23 @@ public class UserDao {
       return userList;
    }
 
+   //Two overloaded methods to get user
    public User getUser(int id){
       List<User> users = getAllUsers();
 
       for(User user: users){
          if(user.getId() == id){
+            return user;
+         }
+      }
+      return null;
+   }
+   
+   public User getUser(String login){
+      List<User> users = getAllUsers();
+
+      for(User user: users){
+         if(user.getLogin().equals(login)){
             return user;
          }
       }

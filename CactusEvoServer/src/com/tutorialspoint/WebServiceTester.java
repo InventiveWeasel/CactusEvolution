@@ -13,6 +13,7 @@ public class WebServiceTester  {
 
    private Client client;
    private String REST_SERVICE_URL = "http://localhost:8080/CactusEvoServer/rest/UserService/users";
+   private String LOGIN_URL = "http://localhost:8080/CactusEvoServer/rest/UserService/login";
    private static final String SUCCESS_RESULT="<result>success</result>";
    private static final String PASS = "pass";
    private static final String FAIL = "fail";
@@ -35,6 +36,8 @@ public class WebServiceTester  {
       tester.testAddUser();
       //test delete user Web Service Method
       tester.testDeleteUser();
+      //test login
+      tester.testLogin();
    }
    //Test: Get list of all users
    //Test: Check if list is not empty
@@ -73,8 +76,8 @@ public class WebServiceTester  {
    private void testUpdateUser(){
       Form form = new Form();
       form.param("id", "1");
-      form.param("name", "suresh");
-      form.param("profession", "clerk");
+      form.param("login", "suresh");
+      form.param("password", "clerk");
 
       String callResult = client
          .target(REST_SERVICE_URL)
@@ -94,8 +97,8 @@ public class WebServiceTester  {
    private void testAddUser(){
       Form form = new Form();
       form.param("id", "2");
-      form.param("name", "naresh");
-      form.param("profession", "clerk");
+      form.param("login", "naresh");
+      form.param("password", "clerk");
 
       String callResult = client
          .target(REST_SERVICE_URL)
@@ -127,5 +130,38 @@ public class WebServiceTester  {
       }
 
       System.out.println("Test case name: testDeleteUser, Result: " + result );
+   }
+   
+   private void testLogin(){
+	   Form form2 = new Form();
+	      form2.param("id", "4");
+	      form2.param("login", "fuinha");
+	      form2.param("password", "hahaha");
+
+	      String Result = client
+	         .target(REST_SERVICE_URL)
+	         .request(MediaType.APPLICATION_XML)
+	         .put(Entity.entity(form2,
+	            MediaType.APPLICATION_FORM_URLENCODED_TYPE),
+	            String.class);
+	   
+	   Form form = new Form();
+      form.param("login", "fuinha");
+      form.param("password", "hahaha");
+      
+      String callResult = client
+  	 .target(LOGIN_URL)
+     .request(MediaType.APPLICATION_XML)
+     .post(Entity.entity(form,
+      MediaType.APPLICATION_FORM_URLENCODED_TYPE),
+      String.class);
+      
+      String result = PASS;
+      if(!SUCCESS_RESULT.equals(callResult)){
+         result = FAIL;
+      }
+
+      System.out.println("Test case name: testLogin, Result: " + result );
+      
    }
 }

@@ -44,10 +44,10 @@ public class UserService {
    @Produces(MediaType.APPLICATION_XML)
    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
    public String createUser(@FormParam("id") int id,
-      @FormParam("name") String name,
-      @FormParam("profession") String profession,
+      @FormParam("login") String login,
+      @FormParam("password") String password,
       @Context HttpServletResponse servletResponse) throws IOException{
-      User user = new User(id, name, profession);
+      User user = new User(id, login, password);
       int result = userDao.addUser(user);
       if(result == 1){
          return SUCCESS_RESULT;
@@ -60,16 +60,31 @@ public class UserService {
    @Produces(MediaType.APPLICATION_XML)
    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
    public String updateUser(@FormParam("id") int id,
-      @FormParam("name") String name,
-      @FormParam("profession") String profession,
+      @FormParam("login") String login,
+      @FormParam("password") String password,
       @Context HttpServletResponse servletResponse) throws IOException{
-      User user = new User(id, name, profession);
+      User user = new User(id, login, password);
       int result = userDao.updateUser(user);
       if(result == 1){
          return SUCCESS_RESULT;
       }
       return FAILURE_RESULT;
    }
+   
+   @POST
+   @Path("/login")
+   @Produces(MediaType.APPLICATION_XML)
+   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+   public String login(@FormParam("login") String login,
+		   @FormParam("password") String password,
+		   @Context HttpServletResponse servletResponse) throws IOException{
+	   User user = userDao.getUser(login);
+	   if(user.getPassword().equals(password))
+		   return SUCCESS_RESULT;
+	   else
+		   return FAILURE_RESULT;
+   }
+   
 
    @DELETE
    @Path("/users/{userid}")
