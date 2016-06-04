@@ -7,6 +7,7 @@ package logic;
 
 import java.awt.Point;
 import systems.CactusSystem;
+import view.ViewsMediator;
 
 /**
  *
@@ -21,6 +22,14 @@ public class Cactus {
     
     public Cactus (Point position){
         this.position = position;
+    }
+    
+    public void initialize(ViewsMediator viewsMediator){
+        viewsMediator.attachNewCactusViewToCactus(this);
+    }
+    
+    public Point getPosition(){
+        return position;
     }
     
 }

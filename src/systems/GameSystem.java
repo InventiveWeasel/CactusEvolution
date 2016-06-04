@@ -5,6 +5,7 @@
  */
 package systems;
 
+import java.awt.Point;
 import view.ViewsMediator;
 
 /**
@@ -22,6 +23,9 @@ public class GameSystem {
     
     public void initialize (ViewsMediator viewsMediator){
         this.viewsMediator = viewsMediator;
+        
+        this.cactusSystem.initialize(viewsMediator);
+        cactusSystem.createCactus(new Point(30, 30));
     }
     
 }
