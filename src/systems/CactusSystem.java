@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cactusevolution;
+package systems;
 
 /**
  *
- * @author Ana Cuder
+ * @author Caio Cesar
  */
-public class CactusEvolution {
-
-    public static void main(String[] args) {
-        GameApp app = new GameApp();
-        app.run();
-    }
+public class CactusSystem {
     
 }

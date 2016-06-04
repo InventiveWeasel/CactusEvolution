@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cactusevolution;
+package view;
+
+import javax.swing.JPanel;
 
 /**
  *
- * @author Ana Cuder
+ * @author Caio Cesar
  */
-public class CactusEvolution {
-
-    public static void main(String[] args) {
-        GameApp app = new GameApp();
-        app.run();
-    }
+public class ViewsMediator extends JPanel{
     
 }
