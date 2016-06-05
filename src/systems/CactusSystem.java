@@ -84,6 +84,14 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         viewsMediator.removeCactusView(cactus);
     }
     
+    public void fusion (Cactus cactus1, Cactus cactus2){
+        int x = (cactus1.getX()+cactus2.getX())/2;
+        int y = (cactus1.getY()+cactus2.getY())/2;
+        createCactus(new Point (x,y), nextSpecie.get(cactus1.getSpecie()), CactusSystem.CactusState.FREE);
+        destroyCactus(cactus1);
+        destroyCactus(cactus2);
+    }
+    
     public void createBox (){
         if (cactusList.size() < 8 && System.currentTimeMillis()-instant > 5000){
             createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY, CactusSystem.CactusState.BOX);
@@ -162,10 +170,11 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
             }
             
             if (next != null && dist2 < 4000){
-                System.out.println ("FUSION!!!!");
+                fusion(holdCactus,next);
             }
-            
-            holdCactus.setState(CactusState.FREE);
+            else{
+                holdCactus.setState(CactusState.FREE);
+            }
             holdCactus = null;
         }
     }
