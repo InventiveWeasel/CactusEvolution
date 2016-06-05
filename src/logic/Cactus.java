@@ -21,14 +21,18 @@ public class Cactus implements Runnable {
     
     //private CactusSystem cactusSystem;
     
-    public Cactus (Point position, CactusSystem.CactusSpecies specie){
+    public Cactus (Point position, CactusSystem.CactusSpecies specie, CactusSystem.CactusState state){
         this.position = position;
         this.specie = specie;
-        state = CactusSystem.CactusState.FREE;
+        this.state = state;
     }
     
     public void initialize(ViewsMediator viewsMediator){
         viewsMediator.attachNewCactusViewToCactus(this);
+    }
+    
+    public void update(ViewsMediator viewsMediator){
+        viewsMediator.updateCactusView(this);
     }
     
     public int getX(){
@@ -37,6 +41,14 @@ public class Cactus implements Runnable {
     
     public int getY(){
         return (int)position.getY();
+    }
+    
+    public CactusSystem.CactusSpecies getSpecie(){
+        return specie;
+    }
+    
+    public CactusSystem.CactusState getState(){
+        return state;
     }
     
     public void setPosition (Point position){

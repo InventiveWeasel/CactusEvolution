@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import logic.Cactus;
+import systems.CactusSystem;
 
 /**
  *
@@ -29,6 +30,11 @@ public class CactusView {
     
     public void loadResources(){
         ImageIcon icon = new ImageIcon("src/tiles/error.png");
+        if (attachedCactus.getState() == CactusSystem.CactusState.BOX)
+            icon = new ImageIcon("src/tiles/box.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.BABY)
+            icon = new ImageIcon("src/tiles/baby.png");
+        
         cactus = icon.getImage();
     }
     
