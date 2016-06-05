@@ -23,12 +23,16 @@ public class GameSystem {
         cactusSystem = new CactusSystem();
     }
     
+    public void Box(){
+        cactusSystem.createBox();
+    }
+    
     public void initialize (ViewsMediator viewsMediator){
         this.viewsMediator = viewsMediator;
         
         this.cactusSystem.initialize(viewsMediator);
         //Teste
-        cactusSystem.createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25));
+        //cactusSystem.createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY);
     }
     
 }

@@ -20,8 +20,9 @@ public class Cactus {
     
     //private CactusSystem cactusSystem;
     
-    public Cactus (Point position){
+    public Cactus (Point position, CactusSystem.CactusSpecies specie){
         this.position = position;
+        this.specie = specie;
     }
     
     public void initialize(ViewsMediator viewsMediator){
