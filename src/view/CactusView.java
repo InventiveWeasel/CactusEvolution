@@ -34,6 +34,22 @@ public class CactusView {
             icon = new ImageIcon("src/tiles/box.png");
         else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.BABY)
             icon = new ImageIcon("src/tiles/baby.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.ADULT)
+            icon = new ImageIcon("src/tiles/adult.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.WEASEL)
+            icon = new ImageIcon("src/tiles/weasel.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.MEXICAN)
+            icon = new ImageIcon("src/tiles/mexican.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.GABI)
+            icon = new ImageIcon("src/tiles/gabi.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.JACKMAN)
+            icon = new ImageIcon("src/tiles/jackman.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.YANO)
+            icon = new ImageIcon("src/tiles/yano.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.GOD)
+            icon = new ImageIcon("src/tiles/god.png");
+        else if (attachedCactus.getSpecie() == CactusSystem.CactusSpecies.EGRET)
+            icon = new ImageIcon("src/tiles/egret.png");
         
         cactus = icon.getImage();
     }
