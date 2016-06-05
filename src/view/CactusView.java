@@ -29,7 +29,6 @@ public class CactusView {
     
     public void loadResources(){
         ImageIcon icon = new ImageIcon("src/tiles/error.png");
-        //cactus = viewsMediator.makeColorTransparent(icon.getImage());
         cactus = icon.getImage();
     }
     

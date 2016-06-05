@@ -31,8 +31,6 @@ public class GameSystem {
         this.viewsMediator = viewsMediator;
         
         this.cactusSystem.initialize(viewsMediator);
-        //Teste
-        //cactusSystem.createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY);
     }
     
 }

@@ -63,11 +63,10 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
     }
     
     public void createBox (){
-        if (cactusList.size() < 16 && System.currentTimeMillis()-instant > 1000){
+        if (cactusList.size() < 8 && System.currentTimeMillis()-instant > 5000){
             createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY);
             instant = System.currentTimeMillis();
         }
-        
         
     }
     
@@ -83,8 +82,6 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
             int cy = cactus.getY();
             int newDist2 = (cx-x)*(cx-x) + (cy-y)*(cy-y);
             
-            System.out.println ((cx-x) + " " + (cy-y));
-            
             if (dist2 < 0 || newDist2 < dist2){
                 next = cactus;
                 dist2 = newDist2;
@@ -92,7 +89,6 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         }
         
         if (dist2 != -1 && dist2 < 4000){
-            System.out.println ("HOLD!");
             holdCactus = next;
             holdCactus.setState(CactusState.HOLD);
         }
