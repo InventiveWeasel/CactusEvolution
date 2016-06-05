@@ -13,7 +13,7 @@ import view.ViewsMediator;
  *
  * @author Caio Cesar
  */
-public class Cactus {
+public class Cactus implements Runnable {
     
     private Point position;
     private CactusSystem.CactusSpecies specie;
@@ -31,6 +31,12 @@ public class Cactus {
     
     public Point getPosition(){
         return position;
+    }
+    
+    public void run(){
+        while (true){
+            
+        }
     }
     
 }

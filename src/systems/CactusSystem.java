@@ -40,14 +40,14 @@ public class CactusSystem {
         Cactus cactus = new Cactus(position, specie);
         cactusList.add(cactus);
         cactus.initialize(viewsMediator);
+        Thread thread = new Thread(cactus);
+        thread.start();
     }
     
     public void createBox (){
         if (cactusList.size() < 16 && System.currentTimeMillis()-instant > 1000){
-            Cactus box = new Cactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY);
+            createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY);
             instant = System.currentTimeMillis();
-            cactusList.add(box);
-            box.initialize(viewsMediator);
         }
         
         
