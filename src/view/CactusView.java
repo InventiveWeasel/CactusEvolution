@@ -34,7 +34,7 @@ public class CactusView {
     }
     
     public void draw (Graphics g){
-        Point position = attachedCactus.getPosition();
+        Point position = new Point (attachedCactus.getX(), attachedCactus.getY());
         Point center = new Point (cactus.getWidth(viewsMediator)/2, cactus.getHeight(viewsMediator)/2);
         
         g.drawImage(cactus, position.x-center.x, position.y-center.y, viewsMediator);
