@@ -155,7 +155,7 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
                 int newDist2 = (cx-x)*(cx-x) + (cy-y)*(cy-y);
 
                 if ((dist2 < 0 || newDist2 < dist2) && cactus.getState() != CactusState.BOX
-                        && cactus.getSpecie() == holdCactus.getSpecie()){
+                        && cactus.getSpecie() == holdCactus.getSpecie() && cactus != holdCactus){
                     next = cactus;
                     dist2 = newDist2;
                 }
