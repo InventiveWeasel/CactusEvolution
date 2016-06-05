@@ -8,6 +8,11 @@ package logic;
 import java.awt.Point;
 import systems.CactusSystem;
 import view.ViewsMediator;
+import java.util.Random;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,9 +20,11 @@ import view.ViewsMediator;
  */
 public class Cactus implements Runnable {
     
-    private Point position;
+    private Point position, nextPosition;
     private CactusSystem.CactusSpecies specie;
     private CactusSystem.CactusState state;
+    private Random gen = new Random();
+    private double teta;
     
     //private CactusSystem cactusSystem;
     
@@ -54,7 +61,15 @@ public class Cactus implements Runnable {
     
     public void run(){
         while (true){
-            
+            teta = (gen.nextInt(360))*Math.PI/180;
+            nextPosition = new Point(getX()+(int)(25*cos(teta)),getY()+(int)(25*sin(teta)));
+            if (nextPosition.x > 24 && nextPosition.y > 24 && nextPosition.x < 941 && nextPosition.y < 587)
+                setPosition(nextPosition);
+            try{
+                Thread.sleep(1000);
+            }   catch (InterruptedException ex) {
+                Logger.getLogger(Cactus.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
