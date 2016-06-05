@@ -37,7 +37,7 @@ public class GameApp extends JFrame{
         while(true){
             viewsMediator.repaint();
             try{
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (Exception e){}
         }
     }
