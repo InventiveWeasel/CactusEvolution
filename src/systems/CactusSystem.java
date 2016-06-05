@@ -16,7 +16,7 @@ import view.ViewsMediator;
 public class CactusSystem {
     
     public enum CactusSpecies{
-        BABY, ADULT
+        BABY, ADULT, JACKMAN, YANO, GABI, EGRET, MEXICAN, WEASEL, GOD
     }
     
     private ViewsMediator viewsMediator;
