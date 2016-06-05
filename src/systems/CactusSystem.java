@@ -14,6 +14,8 @@ import logic.Cactus;
 import view.ViewsMediator;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -37,6 +39,9 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
     private Cactus holdCactus;
     private ViewsMediator viewsMediator;
     
+    private Map<Cactus, Thread> cactusThreads;
+    private Map<CactusSpecies, CactusSpecies> nextSpecie;
+    
     private Random gen = new Random();
     private long instant;
     
@@ -44,6 +49,16 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         this.instant = System.currentTimeMillis();
         cactusList = new ArrayList<Cactus>();
         holdCactus = null;
+        cactusThreads = new HashMap<>();
+        nextSpecie = new HashMap<>();
+        nextSpecie.put(CactusSpecies.BABY, CactusSpecies.ADULT);
+        nextSpecie.put(CactusSpecies.ADULT, CactusSpecies.WEASEL);
+        nextSpecie.put(CactusSpecies.WEASEL, CactusSpecies.GABI);
+        nextSpecie.put(CactusSpecies.GABI, CactusSpecies.MEXICAN);
+        nextSpecie.put(CactusSpecies.MEXICAN, CactusSpecies.EGRET);
+        nextSpecie.put(CactusSpecies.EGRET, CactusSpecies.YANO);
+        nextSpecie.put(CactusSpecies.YANO, CactusSpecies.JACKMAN);
+        nextSpecie.put(CactusSpecies.JACKMAN, CactusSpecies.GOD);
     }
     
     public void initialize (ViewsMediator viewsMediator){
@@ -60,6 +75,13 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         cactus.initialize(viewsMediator);
         Thread thread = new Thread(cactus);
         thread.start();
+        cactusThreads.put(cactus, thread);
+    }
+    
+    public void destroyCactus(Cactus cactus){
+        cactusList.remove(cactus);
+        cactusThreads.remove(cactus);
+        viewsMediator.removeCactusView(cactus);
     }
     
     public void createBox (){
@@ -69,6 +91,7 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         }
         
     }
+    
     
     public void mousePressed (MouseEvent e){
         int x = e.getX();

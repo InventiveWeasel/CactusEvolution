@@ -59,6 +59,10 @@ public class ViewsMediator extends JPanel{
         view.loadResources();
     }
     
+    public void removeCactusView (Cactus cactus){
+        cactusViews.remove(cactus);
+    }
+    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
