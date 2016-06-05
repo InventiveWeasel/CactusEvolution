@@ -73,14 +73,19 @@ public class Cactus implements Runnable {
     
     public void run(){
         while (true){
-            teta = (gen.nextInt(360))*Math.PI/180;
-            nextPosition = new Point(getX()+(int)(25*cos(teta)),getY()+(int)(25*sin(teta)));
-            if (nextPosition.x > 24 && nextPosition.y > 24 && nextPosition.x < 941 && nextPosition.y < 587)
-                setPosition(nextPosition);
-            try{
-                Thread.sleep(1000);
-            }   catch (InterruptedException ex) {
-                Logger.getLogger(Cactus.class.getName()).log(Level.SEVERE, null, ex);
+            //Sem explicacao nenhuma, sem esse print os cactus nao comecam a se mexer
+            //apos a abertura da caixa.
+            System.out.print ("");
+            if (state == CactusSystem.CactusState.FREE){
+                teta = (gen.nextInt(360))*Math.PI/180;
+                nextPosition = new Point(getX()+(int)(25*cos(teta)),getY()+(int)(25*sin(teta)));
+                if (nextPosition.x > 24 && nextPosition.y > 24 && nextPosition.x < 941 && nextPosition.y < 587)
+                    setPosition(nextPosition);
+                try{
+                    Thread.sleep(1000);
+                }   catch (InterruptedException ex) {
+                    Logger.getLogger(Cactus.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
