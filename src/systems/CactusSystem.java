@@ -143,6 +143,28 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
     
     public void mouseReleased (MouseEvent e){
         if (holdCactus != null){
+            int x = holdCactus.getX();
+            int y = holdCactus.getY();
+            
+            Cactus next = null;
+            int dist2 = -1;
+            
+            for (Cactus cactus : cactusList){
+                int cx = cactus.getX();
+                int cy = cactus.getY();
+                int newDist2 = (cx-x)*(cx-x) + (cy-y)*(cy-y);
+
+                if ((dist2 < 0 || newDist2 < dist2) && cactus.getState() != CactusState.BOX
+                        && cactus.getSpecie() == holdCactus.getSpecie()){
+                    next = cactus;
+                    dist2 = newDist2;
+                }
+            }
+            
+            if (next != null && dist2 < 4000){
+                System.out.println ("FUSION!!!!");
+            }
+            
             holdCactus.setState(CactusState.FREE);
             holdCactus = null;
         }
