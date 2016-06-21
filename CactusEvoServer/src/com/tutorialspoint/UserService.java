@@ -46,8 +46,9 @@ public class UserService {
    public String createUser(@FormParam("id") int id,
       @FormParam("login") String login,
       @FormParam("password") String password,
+      @FormParam("state") String state,
       @Context HttpServletResponse servletResponse) throws IOException{
-      User user = new User(id, login, password);
+      User user = new User(id, login, password, state);
       int result = userDao.addUser(user);
       if(result == 1){
          return SUCCESS_RESULT;
@@ -62,8 +63,9 @@ public class UserService {
    public String updateUser(@FormParam("id") int id,
       @FormParam("login") String login,
       @FormParam("password") String password,
+      @FormParam("state") String state,
       @Context HttpServletResponse servletResponse) throws IOException{
-      User user = new User(id, login, password);
+      User user = new User(id, login, password, state);
       int result = userDao.updateUser(user);
       if(result == 1){
          return SUCCESS_RESULT;

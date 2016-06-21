@@ -76,9 +76,9 @@ public class WebServiceTester  {
    private void testUpdateUser(){
       Form form = new Form();
       form.param("id", "1");
-      form.param("login", "suresh");
+      form.param("login", "sujo");
       form.param("password", "clerk");
-
+      form.param("state", "12345678;12:08");
       String callResult = client
          .target(REST_SERVICE_URL)
          .request(MediaType.APPLICATION_XML)
@@ -99,6 +99,7 @@ public class WebServiceTester  {
       form.param("id", "2");
       form.param("login", "naresh");
       form.param("password", "clerk");
+      form.param("state", "456");
 
       String callResult = client
          .target(REST_SERVICE_URL)
@@ -136,7 +137,8 @@ public class WebServiceTester  {
 	   Form form2 = new Form();
 	      form2.param("id", "4");
 	      form2.param("login", "fuinha");
-	      form2.param("password", "hahaha");
+	      form2.param("password", "hahkka");
+	      form2.param("state", "3452132;342:21");
 
 	      String Result = client
 	         .target(REST_SERVICE_URL)
@@ -145,9 +147,9 @@ public class WebServiceTester  {
 	            MediaType.APPLICATION_FORM_URLENCODED_TYPE),
 	            String.class);
 	   
-	   Form form = new Form();
+	  Form form = new Form();
       form.param("login", "fuinha");
-      form.param("password", "hahaha");
+      form.param("password", "hahka");
       
       String callResult = client
   	 .target(LOGIN_URL)

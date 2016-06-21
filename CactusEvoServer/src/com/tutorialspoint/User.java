@@ -11,19 +11,19 @@ public class User implements Serializable {
    private int id;
    private String login;
    private String password;
+   private String state;
 
    public User(){}
    
-   public User(int id, String login, String password){
+   public User(int id, String login, String password, String state){
       this.id = id;
       this.login = login;
       this.password = password;
+      this.state = state;
    }
-
    public int getId() {
       return id;
    }
-
    @XmlElement
    public void setId(int id) {
       this.id = id;
@@ -41,5 +41,12 @@ public class User implements Serializable {
    @XmlElement
    public void setPassword(String password) {
       this.password = password;
-   }		
+   }
+   public String getState(){
+	   return state;
+   }
+   @XmlElement
+   public void setState(String state){
+	   this.state = state;
+   }
 }
