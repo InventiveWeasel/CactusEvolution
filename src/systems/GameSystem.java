@@ -7,6 +7,7 @@ package systems;
 
 import java.awt.Point;
 import view.ViewsMediator;
+import java.util.Random;
 
 /**
  *
@@ -16,17 +17,20 @@ public class GameSystem {
     
     private CactusSystem cactusSystem;
     private ViewsMediator viewsMediator;
+    private Random gen = new Random();
     
     public GameSystem(){
         cactusSystem = new CactusSystem();
+    }
+    
+    public void Box(){
+        cactusSystem.createBox();
     }
     
     public void initialize (ViewsMediator viewsMediator){
         this.viewsMediator = viewsMediator;
         
         this.cactusSystem.initialize(viewsMediator);
-        //Teste
-        cactusSystem.createCactus(new Point(450, 300));
     }
     
 }
