@@ -44,6 +44,7 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
     
     private Random gen = new Random();
     private long instant;
+    private final int cactusRadius = 46;
     
     public CactusSystem(){
         this.instant = System.currentTimeMillis();
@@ -69,10 +70,18 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
         viewsMediator.addMouseMotionListener(this);
     }
     
+    public int getWidth(){
+        return viewsMediator.getWidth();
+    }
+    
+    public int getHeight(){
+        return viewsMediator.getHeight();
+    }
+    
     public void createCactus (Point position, CactusSystem.CactusSpecies specie, CactusSystem.CactusState state){
         Cactus cactus = new Cactus(position, specie, state);
         cactusList.add(cactus);
-        cactus.initialize(viewsMediator);
+        cactus.initialize(viewsMediator, this);
         Thread thread = new Thread(cactus);
         thread.start();
         cactusThreads.put(cactus, thread);
@@ -94,7 +103,8 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
     
     public void createBox (){
         if (cactusList.size() < 8 && System.currentTimeMillis()-instant > 5000){
-            createCactus(new Point(gen.nextInt(916)+25, gen.nextInt(562)+25), CactusSystem.CactusSpecies.BABY, CactusSystem.CactusState.BOX);
+            createCactus(new Point(gen.nextInt(viewsMediator.getWidth()-2*cactusRadius)+cactusRadius,
+                    gen.nextInt(viewsMediator.getHeight()-2*cactusRadius)+cactusRadius), CactusSystem.CactusSpecies.BABY, CactusSystem.CactusState.BOX);
             instant = System.currentTimeMillis();
         }
         
@@ -119,7 +129,7 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
             }
         }
         
-        if (next != null && dist2 < 4000){
+        if (next != null && dist2 < cactusRadius*cactusRadius){
             holdCactus = next;
             holdCactus.setState(CactusState.HOLD);
         }
@@ -143,9 +153,8 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
             }
         }
         
-        if (next != null && dist2 < 4000){
+        if (next != null && dist2 < cactusRadius*cactusRadius){
             next.setState(CactusState.FREE);
-            next.update(viewsMediator);
         }
     }
     
@@ -169,7 +178,7 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
                 }
             }
             
-            if (next != null && dist2 < 4000){
+            if (next != null && dist2 < cactusRadius*cactusRadius){
                 fusion(holdCactus,next);
             }
             else{
@@ -189,7 +198,8 @@ public class CactusSystem implements MouseListener, MouseMotionListener{
             int cx = holdCactus.getX();
             int cy = holdCactus.getY();
             
-            if (cx+dx > 24 && cx+dx < 941 && cy+dy > 24 && cy+dy < 587)
+            if (cx+dx > cactusRadius && cx+dx < viewsMediator.getWidth() - cactusRadius
+                    && cy+dy > cactusRadius && cy+dy < viewsMediator.getHeight()- cactusRadius)
                 holdCactus.translate(dx, dy);
             else{
                 holdCactus.setState(CactusState.FREE);

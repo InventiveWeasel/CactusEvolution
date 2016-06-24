@@ -26,6 +26,8 @@ public class Cactus implements Runnable {
     private Random gen = new Random();
     private double teta;
     
+    private CactusSystem cactusSystem;
+    
     //private CactusSystem cactusSystem;
     
     public Cactus (Point position, CactusSystem.CactusSpecies specie, CactusSystem.CactusState state){
@@ -34,12 +36,9 @@ public class Cactus implements Runnable {
         this.state = state;
     }
     
-    public void initialize(ViewsMediator viewsMediator){
+    public void initialize(ViewsMediator viewsMediator, CactusSystem cactusSystem){
         viewsMediator.attachNewCactusViewToCactus(this);
-    }
-    
-    public void update(ViewsMediator viewsMediator){
-        viewsMediator.updateCactusView(this);
+        this.cactusSystem = cactusSystem;
     }
     
     public int getX(){
@@ -79,7 +78,8 @@ public class Cactus implements Runnable {
             if (state == CactusSystem.CactusState.FREE){
                 teta = (gen.nextInt(360))*Math.PI/180;
                 nextPosition = new Point(getX()+(int)(25*cos(teta)),getY()+(int)(25*sin(teta)));
-                if (nextPosition.x > 24 && nextPosition.y > 24 && nextPosition.x < 941 && nextPosition.y < 587)
+                if (nextPosition.x > 46 && nextPosition.y > 46
+                        && nextPosition.x < cactusSystem.getWidth() - 46 && nextPosition.y < cactusSystem.getHeight()- 46)
                     setPosition(nextPosition);
                 try{
                     Thread.sleep(1000);

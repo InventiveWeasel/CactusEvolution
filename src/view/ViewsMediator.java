@@ -26,14 +26,17 @@ import systems.GameSystem;
  */
 public class ViewsMediator extends JPanel{
     
-    public final int SCREEN_WIDTH = 965;
-    public final int SCREEN_HEIGHT = 611;
+    public final int SCREEN_WIDTH = 847;
+    public final int SCREEN_HEIGHT = 532;
     
     private GameSystem gameSystem;
     private Map<Cactus, CactusView> cactusViews;
+    private BackgroundView bgView;
     
     public ViewsMediator(){
         cactusViews = new HashMap<>();
+        
+        bgView = new BackgroundView(this);
     }
     
     public void initialize (GameSystem gameSystem){
@@ -45,6 +48,8 @@ public class ViewsMediator extends JPanel{
         setFocusable(true);
         
         setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        
+        bgView.loadResources();
     }
     
     public void attachNewCactusViewToCactus (Cactus cactus){
@@ -54,11 +59,6 @@ public class ViewsMediator extends JPanel{
         cactusViews.put(cactus, view);
     }
     
-    public void updateCactusView (Cactus cactus){
-        CactusView view = cactusViews.get(cactus);
-        view.loadResources();
-    }
-    
     public void removeCactusView (Cactus cactus){
         cactusViews.remove(cactus);
     }
@@ -66,6 +66,8 @@ public class ViewsMediator extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        bgView.draw(g);
         
         for (Map.Entry<Cactus, CactusView> entry : cactusViews.entrySet())
         {
@@ -83,7 +85,10 @@ public class ViewsMediator extends JPanel{
                 int green = c.getGreen();
                 int blue = c.getBlue();
 
-                int alpha = (red == 34 && green == 177 && blue == 76 ? 0 : 255);
+                int alpha = (red >= 34-4 && red <= 34+4
+                        && green >= 177-4 && green <= 177+4
+                        && blue >= 76-4 && blue <= 76+4
+                        ? 0 : 255);
                 c = new Color(red, green, blue, alpha);
                 
                 return c.getRGB();
